@@ -24,6 +24,52 @@ This guide outlines a comprehensive and actionable checklist for conducting secu
 | **Regulatory Compliance** | Ensure compliance with GDPR, CCPA, HIPAA, or other relevant laws. Redact PII when possible and follow data retention guidelines. |
 | **Backup & Recovery** | Maintain encrypted, offsite backups. Test recovery processes periodically. Implement rollback procedures. |
 
+## Additional Security Best Practices
+
+While the checklist above covers a broad range of areas, the following practices provide further depth for both frontend and backend security, as well as ongoing maintenance:
+
+### Frontend Security
+
+- **HTTPS Enforcement**  
+  Enforce HTTPS for all client-server communications, redirect HTTP requests to HTTPS, and implement HTTP Strict Transport Security (HSTS).
+
+- **XSS Prevention**  
+  Sanitize and validate all user inputs (forms, query parameters) and use frameworks or libraries that automatically escape outputs. Adopt a strong Content Security Policy (CSP) to minimize cross-site scripting risks.
+
+- **Anti-CSRF Protections**  
+  Utilize anti-CSRF tokens on all state-changing requests, with server-side validation to prevent cross-site request forgery.
+
+- **Sensitive Data Protection**  
+  Avoid storing secrets, tokens, or API keys in the client-side code or local storage. Use secure cookies (with HttpOnly and Secure flags) and manage sensitive data using environment variables and secure server-side mechanisms.
+
+### Backend Security
+
+- **Authentication & Credential Storage**  
+  Implement robust authentication mechanisms using established frameworks (OAuth, JWT). Ensure all passwords are hashed with strong algorithms (bcrypt, Argon2, or PBKDF2) using proper salting, and store sensitive credentials and API keys securely (via environment variables or secrets managers).
+
+- **Database & API Safeguards**  
+  Always use parameterized queries or ORM tools to protect against SQL injection. Validate inputs on the server side, and enforce role-based access control (RBAC) to restrict database access. For APIs, ensure strict access control and consider using an API gateway or reverse proxy.
+
+- **Security Headers Configuration**  
+  Set HTTP security headers such as `X-Frame-Options`, `X-Content-Type-Options`, `Strict-Transport-Security`, `X-XSS-Protection`, `Referrer-Policy`, and `Permissions-Policy` to add extra layers of protection.
+
+### Practical Measures & Maintenance
+
+- **Regular Dependency Updates**  
+  Continuously update third-party libraries and monitor dependencies using tools like npm audit or Dependabot to minimize vulnerabilities.
+
+- **Error Handling and Logging**  
+  Provide user-friendly error messages without exposing internal details. Log errors and incidents securely, and monitor these logs for suspicious activity to enable prompt incident responses.
+
+- **Secure Code Reviews & Testing**  
+  Incorporate security-focused code reviews into your development process. Use static application security testing (SAST) tools for early vulnerability detection.
+
+- **Rate Limiting and Abuse Protection**  
+  Apply rate limiting on all sensitive endpoints and validate inbound data rigorously to prevent brute-force and denial-of-service attacks.
+
+- **Infrastructure Hardening**  
+  Leverage security features provided by your hosting environment or CDN, such as built-in DDoS mitigation and secure configurations for separate development, staging, and production environments.
+
 ## Additional AI-Specific Security Considerations
 
 | **LLM Security Practice** | **Best Practices** |
@@ -79,7 +125,7 @@ Before going live, double-check the following:
 
 ## Acknowledgments
 
-This guide is inspired by insights from Saïd Aitmbarek ([@SaidAitmbarek](https://x.com/SaidAitmbarek)), Jack Friks ([@jackfriks](https://x.com/jackfriks)), and others.
+This guide is inspired by insights from Saïd Aitmbarek ([@SaidAitmbarek](https://x.com/SaidAitmbarek)), Jack Friks ([@jackfriks](https://x.com/jackfriks)), Matt Palmer ([@mattppal](https://x.com/mattppal)), and others.
 
 ## Contributing
 
